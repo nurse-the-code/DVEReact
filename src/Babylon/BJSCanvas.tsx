@@ -17,21 +17,13 @@ const BabylonCanvas: React.FC = () => {
     }
 
     const engine = new Engine(canvasRef.current, true);
-    createScene(engine, canvasRef.current);
-  }, []);
 
-  const createScene = (engine: Engine, canvas: HTMLCanvasElement): Scene => {
-    // This creates a basic Babylon Scene object (non-mesh)
     const scene = new Scene(engine);
 
     BabylonSystem.scene = scene;
     BabylonSystem.engine = engine;
-    BabylonSystem.canvas = canvas;
-
-    $INIT_RENDER();
-
-    return scene;
-  };
+    BabylonSystem.canvas = canvasRef.current;
+  }, []);
 
   return <canvas ref={canvasRef} className="renderCanvas" />;
 };
