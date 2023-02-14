@@ -1,12 +1,6 @@
-<h1 align="center">
- ⛯ DVE React ⛯
-</h1>
-
-<p align="center">
-<img src="https://divine-star-software.github.io/DigitalAssets/images/logo-small.png">
-</p>
+<h1>DVE React</h1>
 
 ---
 
-An example of DVE and create-react-app.
+An example of DVE and create-react-app. Forked from Divine-Star-Software(https://github.com/Divine-Star-Software/DVEReact).
 
