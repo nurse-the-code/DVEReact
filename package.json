@@ -25,7 +25,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "nuke": "rm -rf node_modules && rm -rf package-lock.json && npm install"
+    "nuke": "rm -rf node_modules && rm -rf package-lock.json && yarn install"
   },
   "eslintConfig": {
     "extends": [
