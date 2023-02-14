@@ -5,5 +5,4 @@ export const BabylonSystem = {
   engine: <Engine>{},
   camera: <UniversalCamera>{},
   canvas: <HTMLCanvasElement>{},
-
 };
