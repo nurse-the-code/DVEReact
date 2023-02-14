@@ -22,7 +22,10 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts .",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "nuke": "rm -rf node_modules && rm -rf package-lock.json && npm install"
   },
   "eslintConfig": {
     "extends": [
@@ -43,6 +46,11 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^7.0.0"
+    "@craco/craco": "^7.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "prettier": "^2.8.4"
   }
 }
