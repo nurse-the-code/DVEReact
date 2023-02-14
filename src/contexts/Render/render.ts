@@ -133,7 +133,7 @@ export async function $INIT_RENDER() {
 
   const camera = DVER.render.getDefaultCamera(scene);
   camera.position.y = 70;
-  camera.setTarget(Vector3.Zero());
+  camera.setTarget(new Vector3(0, 90, 90));
   camera.inertia = 0.2;
   BabylonSystem.camera = camera;    ;
   // camera.maxZ = 1000;
