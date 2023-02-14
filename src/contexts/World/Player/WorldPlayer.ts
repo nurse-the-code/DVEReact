@@ -53,7 +53,7 @@ export const $INITWorldPlayer = async (DVEW: DivineVoxelEngineWorld) => {
     z: 0,
   };
 
-  const reachDistance = 10;
+  const reachDistance = 5;
 
   const brush = DVEW.getBrush();
 
