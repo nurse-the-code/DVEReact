@@ -135,7 +135,7 @@ export async function $INIT_RENDER() {
   camera.position.y = 70;
   camera.setTarget(Vector3.Zero());
   camera.inertia = 0.2;
-  BabylonSystem.camera = camera;    ;
+  BabylonSystem.camera = camera;
   // camera.maxZ = 1000;
 
   const bmat = DVER.render.skyBoxMaterial.createMaterial(scene);

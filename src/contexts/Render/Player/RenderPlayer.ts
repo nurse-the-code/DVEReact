@@ -2,8 +2,7 @@ import { PlayerPhysicsStatesValues } from "../../../Data/Player/PlayerPhysicsDat
 import { DVER } from "divine-voxel-engine/dist/Render/DivineVoxelEngineRender.js";
 import { Mesh, TransformNode, UniversalCamera, Vector3 } from "babylonjs";
 
-import { PlayerManager } from "../../Shared/Player/PlayerManager"
-
+import { PlayerManager } from "../../Shared/Player/PlayerManager";
 
 /*
 PLAYER 
@@ -15,9 +14,8 @@ type PlayerRenderNodes = {
   camNode: TransformNode;
 };
 export const RenderPlayer = {
-
   settings: {
-    doWalkEffect: true,
+    doWalkEffect: false,
   },
   maanger: PlayerManager,
   nodes: <PlayerRenderNodes>{},
@@ -85,12 +83,11 @@ export const RenderPlayer = {
   },
 
   interact() {
-/*     DVER.worldComm.runPromiseTasks<CastSpellTask>(
+    /*     DVER.worldComm.runPromiseTasks<CastSpellTask>(
       "interact",
       crypto.randomUUID(),
       (data : any) => {},
       ["#ecd_place_crystalbox", []]
     ); */
   },
-
 };

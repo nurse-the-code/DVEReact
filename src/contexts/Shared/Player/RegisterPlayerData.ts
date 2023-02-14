@@ -1,7 +1,7 @@
-import { TagManager } from "divine-voxel-engine/dist/Libs/DivineBinaryTags/TagManager"
-import { PlayerPhysicsTagIDs } from  "../../../Data/Player/PlayerPhysicsData"
+import { TagManager } from "divine-voxel-engine/dist/Libs/DivineBinaryTags/TagManager";
+import { PlayerPhysicsTagIDs } from "../../../Data/Player/PlayerPhysicsData";
 
-import { PlayerStatsTagIDs } from "../../../Data/Player/PlayerStatsData"
+import { PlayerStatsTagIDs } from "../../../Data/Player/PlayerStatsData";
 
 export function $RegisterPlayerData() {
   const playerPhysicsTagManager = new TagManager("player-physics-tags");
