@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 
 import "./BJSCanvas.css";
 import { BabylonSystem } from "./EngineSystem";
-import { Scene, Engine } from "babylonjs";
-import { $INIT_RENDER } from "../contexts/Render/render";
+import { Scene } from "@babylonjs/core/scene";
+import { Engine } from "@babylonjs/core/Engines/engine";
 
 let ran = false;
 const BabylonCanvas: React.FC = () => {

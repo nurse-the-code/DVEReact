@@ -1,4 +1,4 @@
-import { DVEW } from "divine-voxel-engine/dist/World/DivineVoxelEngineWorld";
+import { DVEW } from "divine-voxel-engine/World/";
 
 
 const brush = DVEW.getBrush();
