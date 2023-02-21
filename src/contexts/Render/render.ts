@@ -27,9 +27,9 @@ import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial.js"
 import { INIT_RENDER_PLAYER } from "dve-plugins-player/Render/";
 let init = false;
 export async function $INIT_DVER() {
-  if(init) return;
+  if (init) return;
   init = true;
-  console.log("INIT DVER")
+  console.log("INIT DVER");
   DVER.textures.defineDefaultTexturePath("assets/textures");
   DVER.textures.registerTexture([
     {
@@ -47,7 +47,6 @@ export async function $INIT_DVER() {
     },
   ]);
 
-
   const workers = SetUpWorkers();
   await DVER.$INIT({
     worldWorker: workers.worldWorker,
@@ -62,11 +61,9 @@ export async function $INIT_DVER() {
       clearChachedGeometry: true,
     },
   });
-(window as any).DVER = DVER;
+  (window as any).DVER = DVER;
   await $INIT_RENDER();
 }
-
-
 
 function SetUpWorkers() {
   const worldWorker = new Worker(new URL("../World/world.ts", import.meta.url));
@@ -170,7 +167,6 @@ export async function $INIT_RENDER() {
 
   scene.clearColor.r = 1;
 
-  console.log("here");
   const player = await INIT_RENDER_PLAYER(
     scene,
     camera,
@@ -193,5 +189,4 @@ export async function $INIT_RENDER() {
   engine.runRenderLoop(() => {
     scene.render();
   });
-console.log("done")
 }

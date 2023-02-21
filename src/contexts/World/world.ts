@@ -19,7 +19,6 @@ import { PlayerManager } from "dve-plugins-player";
   ]);
 
   await DVEW.$INIT();
-  console.log("sup");
 
   const numChunks = 2;
   let startX = -16 * numChunks;
@@ -36,14 +35,14 @@ import { PlayerManager } from "dve-plugins-player";
       tasks.light.worldSun.add(x, z);
     }
   }
-  console.log("sup 22");
+
   await tasks.light.worldSun.runAndAwait();
   for (let x = startX; x < endX; x += 16) {
     for (let z = startZ; z < endZ; z += 16) {
       builder.setXZ(x, z).buildColumn();
     }
   }
-  console.log("sup 2");
+
   const worldPlayer = await INIT_WORLD_PLAYER(DVEW);
   setInterval(() => {
     worldPlayer.update();
