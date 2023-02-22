@@ -1,29 +1,35 @@
-import { DVER } from "divine-voxel-engine/dist/Render/DivineVoxelEngineRender";
+import { DVER } from "divine-voxel-engine/Render/";
 import { BabylonSystem } from "../../Babylon/EngineSystem";
-import {
-  BoundingBox,
-  BoundingInfo,
-  Color3,
-  Effect,
-  Engine,
-  Mesh,
-  RawTexture2DArray,
-  Scene,
-  ShaderMaterial,
-  Texture,
-  TransformNode,
-  UniversalCamera,
-  Vector3,
-  Vector4,
-  VertexData,
-  ArcRotateCamera,
-  HemisphericLight,
-  MeshBuilder,
-  Color4,
-} from "babylonjs";
-import { $INITPlayer } from "./Player/InitPlayer";
-(window as any).BABYLON = BABYLON;
+
+//BABYLON
+//FOR DVER
+import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder";
+import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
+import { RawTexture2DArray } from "@babylonjs/core/Materials/Textures/rawTexture2DArray.js";
+import { Texture } from "@babylonjs/core/Materials/Textures/texture.js";
+import { Scene } from "@babylonjs/core/scene.js";
+import { Engine } from "@babylonjs/core/Engines/engine.js";
+import { Vector3, Vector4 } from "@babylonjs/core/Maths/math.vector.js";
+import { Color3 } from "@babylonjs/core/Maths/math.color.js";
+import { Effect } from "@babylonjs/core/Materials/effect.js";
+import { Mesh } from "@babylonjs/core/Meshes/mesh.js";
+import { UniversalCamera } from "@babylonjs/core/Cameras/universalCamera.js";
+import { TransformNode } from "@babylonjs/core/Meshes/transformNode.js";
+import { ShaderMaterial } from "@babylonjs/core/Materials/shaderMaterial.js";
+import { BoundingBox } from "@babylonjs/core/Culling/boundingBox.js";
+import { BoundingInfo } from "@babylonjs/core/Culling/boundingInfo.js";
+import { VertexData } from "@babylonjs/core/Meshes/mesh.vertexData.js";
+//FOR DVE PLAYER
+import { CreateBox } from "@babylonjs/core/Meshes/Builders/boxBuilder.js";
+import { EdgesRenderer } from "@babylonjs/core/Rendering/edgesRenderer.js";
+import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial.js";
+
+import { INIT_RENDER_PLAYER } from "dve-plugins-player/Render/";
+let init = false;
 export async function $INIT_DVER() {
+  if (init) return;
+  init = true;
+  console.log("INIT DVER");
   DVER.textures.defineDefaultTexturePath("assets/textures");
   DVER.textures.registerTexture([
     {
@@ -55,6 +61,8 @@ export async function $INIT_DVER() {
       clearChachedGeometry: true,
     },
   });
+  (window as any).DVER = DVER;
+  await $INIT_RENDER();
 }
 
 function SetUpWorkers() {
@@ -113,27 +121,27 @@ export async function $INIT_RENDER() {
   await DVER.$SCENEINIT({
     scene: scene,
     system: {
-      Scene: Scene,
-      Engine: Engine,
-      RawTexture2DArray: RawTexture2DArray,
-      Texture: Texture,
-      Vector3: Vector3,
-      Vector4: Vector4,
-      UniversalCamera: UniversalCamera,
-      TransformNode: TransformNode,
-      ShaderMaterial: ShaderMaterial,
-      Mesh: Mesh,
-      BoundingBox: BoundingBox,
-      BoundingInfo: BoundingInfo,
-      VertexData: VertexData,
-      Effect: Effect,
-      Color3: Color3,
+      Scene,
+      Engine,
+      RawTexture2DArray,
+      Texture,
+      Vector3,
+      Vector4,
+      UniversalCamera,
+      TransformNode,
+      ShaderMaterial,
+      Mesh,
+      BoundingBox,
+      BoundingInfo,
+      VertexData,
+      Effect,
+      Color3,
     },
   });
 
   const camera = DVER.render.getDefaultCamera(scene);
   camera.position.y = 70;
-  camera.setTarget(new Vector3(0, 90, 90));
+  camera.setTarget(Vector3.Zero());
   camera.inertia = 0.2;
   BabylonSystem.camera = camera;
   // camera.maxZ = 1000;
@@ -158,9 +166,27 @@ export async function $INIT_RENDER() {
   });
 
   scene.clearColor.r = 1;
+
+  const player = await INIT_RENDER_PLAYER(
+    scene,
+    camera,
+    DVER,
+    {
+      CreateBox,
+      EdgesRenderer,
+      StandardMaterial,
+    },
+    MeshBuilder.CreateBox("", { width: 1, height: 1, depth: 1 })
+  );
+
+  player.controls.mouse.right.down.add(() => {
+    DVER.worldComm.runTasks("break", []);
+  });
+  player.controls.mouse.left.down.add(() => {
+    DVER.worldComm.runTasks("place", []);
+  });
+
   engine.runRenderLoop(() => {
     scene.render();
   });
-
-  await $INITPlayer();
 }

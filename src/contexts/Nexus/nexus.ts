@@ -1,8 +1,12 @@
-import { DVEN } from "divine-voxel-engine/dist/Nexus/DivineVoxelEngineNexus";
-import { DVP } from "divine-voxel-engine/dist/Plugins/Physics/Nexus/DivineVoxelPhysics";
-import { GetNexusPlayer } from "./Player/NexusPlayer";
+import { DVEN } from "divine-voxel-engine/Nexus";
 
+import { INIT_NEXUS_PLAYER } from "dve-plugins-player/Nexus/";
 (async () => {
   await DVEN.$INIT();
-  const player = await GetNexusPlayer(DVEN, DVP);
+  const player = await INIT_NEXUS_PLAYER(DVEN);
+  player.setPosition(0, 120, 0);
+
+  setInterval(() => {
+    player.update();
+  }, 17);
 })();
