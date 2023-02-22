@@ -1,6 +1,6 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "my-DVER-app",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@babylonjs/core": "^5.47.1",
