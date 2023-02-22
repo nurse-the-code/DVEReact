@@ -6,7 +6,7 @@ An example of DVE and create-react-app. Forked from Divine-Star-Software(https:/
 
 To start just run:
 ```console
-npm run start
+yarn start
 ```
 
 This will start the dev server on localhost port 3000. 
