@@ -8,5 +8,4 @@ import { DVEC } from "divine-voxel-engine/Constructor/";
     ])
   );
   await DVEC.$INIT();
-
 })();
