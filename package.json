@@ -1,8 +1,9 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "my-divine-voxel-engine-react-app",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
+    "@babylonjs/core": "^5.47.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -10,8 +11,7 @@
     "@types/node": "^16.18.12",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",
-    "babylonjs": "^5.46.0",
-    "divine-voxel-engine": "^1.2.45",
+    "dve-plugins-player": "^0.0.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -25,7 +25,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "nuke": "rm -rf node_modules && rm -rf package-lock.json && yarn install"
+    "nuke": "rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && yarn install"
   },
   "eslintConfig": {
     "extends": [

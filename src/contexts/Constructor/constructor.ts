@@ -1,4 +1,4 @@
-import { DVEC } from "divine-voxel-engine/dist/Constructor/DivineVoxelEngineConstructor";
+import { DVEC } from "divine-voxel-engine/Constructor/";
 
 (async () => {
   DVEC.voxelManager.registerVoxel(
@@ -8,4 +8,5 @@ import { DVEC } from "divine-voxel-engine/dist/Constructor/DivineVoxelEngineCons
     ])
   );
   await DVEC.$INIT();
+
 })();

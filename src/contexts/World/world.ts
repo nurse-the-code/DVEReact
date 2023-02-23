@@ -1,7 +1,8 @@
-import { DVEW } from "divine-voxel-engine/dist/World/DivineVoxelEngineWorld.js";
-import { $INITWorldPlayer } from "./Player/WorldPlayer";
+import { DVEW } from "divine-voxel-engine/World/";
+import { INIT_WORLD_PLAYER } from "dve-plugins-player/World/";
 import { WorldGen } from "./WorldGen";
 
+import { PlayerManager } from "dve-plugins-player";
 (async () => {
   DVEW.voxelManager.registerVoxelData([
     {
@@ -34,6 +35,7 @@ import { WorldGen } from "./WorldGen";
       tasks.light.worldSun.add(x, z);
     }
   }
+
   await tasks.light.worldSun.runAndAwait();
   for (let x = startX; x < endX; x += 16) {
     for (let z = startZ; z < endZ; z += 16) {
@@ -41,8 +43,18 @@ import { WorldGen } from "./WorldGen";
     }
   }
 
-  const worldPlayer = await $INITWorldPlayer(DVEW);
+  const worldPlayer = await INIT_WORLD_PLAYER(DVEW);
   setInterval(() => {
     worldPlayer.update();
   }, 20);
+
+  const brush = DVEW.getBrush();
+  DVEW.TC.registerTasks("break", async () => {
+    const { x, y, z } = PlayerManager.physics.pick.position;
+    await brush.setXYZ(x, y, z).eraseAndAwaitUpdate();
+  });
+  DVEW.TC.registerTasks("place", async () => {
+    const [x, y, z] = PlayerManager.physics.pick.getPlacePosition();
+    await brush.setId("dve_debug").setXYZ(x, y, z).paintAndAwaitUpdate();
+  });
 })();
